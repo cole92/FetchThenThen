@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #0a0a23; /* Tamno plava pozadina */
+            color: #f0e14a; /* Svijetlo žuta boja teksta */
+            font-family: Arial, sans-serif; /* Moderniji font */
+        }
+    
+        #main {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            gap: 20px; /* Razmak između elemenata */
+            padding: 20px; /* Unutrašnji razmak */
+        }
+    
+        .film {
+            text-align: center;
+            background-color: #161638; /* Malo svetlija pozadina za svaki film */
+            padding: 15px; /* Unutrašnji razmak */
+            border-radius: 8px; /* Zaobljeni uglovi */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Senka za 3D efekat */
+        }
+    
+        .film h2 {
+            font-size: 24px; /* Veći font za naslov */
+            color: #e0e1dd; /* Svetlija boja za naslov */
+        }
+    
+        .film img {
+            width: 200px;
+            height: 200px;
+            border: 3px solid #f0e14a; /* Okvir oko slika */
+            border-radius: 4px; /* Zaobljeni uglovi za slike */
+        }
+    
+        .film p {
+            color: #a9f1df; /* Drugačija boja za godine */
+        }
+    </style>
+</head>
+<body>
+    <div id="main"></div>
+
+    <script>
+        function uHtml(x) {
+            return x.map(film => (`
+                <div class="film">
+                    <h2>${film.naziv}</h2>
+                    <img src="${film.slika}">
+                    <p>Godine: ${film.godina}</p>    
+                </div>    
+                `)).join("")
+        }
+
+        function render(htmlElement, x) {
+            document.querySelector(htmlElement).innerHTML = x
+        }
+
+        fetch("https://extendsclass.com/api/json-storage/bin/ecaedbf")
+        .then (link => link.json())
+        .then (json => render('#main', uHtml(json)));
+    </script>
+</body>
+</html>
