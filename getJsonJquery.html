@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="display" style="background-color: red; color: #fff;"></div>
+    <button id="fetch">Pokupi podatke korisnika</button>
+
+    <script>
+        $(document).ready(function(){
+            $("#fetch").click(function(){
+                $.getJSON('https://extendsclass.com/api/json-storage/bin/eadadef', function(jsonObjekat){
+                    $('#display').html('<p>Ime:' +jsonObjekat.ime +'</p>');
+                    $('#display').append("<p>Prezime:" + jsonObjekat.ime + '</p>');
+                    $('#display').append("<p>Godine:" + jsonObjekat.godine + '</p>');
+                    $('#display').append("<p>Kompanija:" + jsonObjekat.kompanija + '</p>');
+                })
+            })
+        })
+    </script>
+</body>
+</html>
